@@ -8,19 +8,18 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import parserXML.Parser;
 
 public class NazBankConnect {
 	
-	@SuppressWarnings("deprecation")
-	public Integer NBGetData(Date date) {
+	public Float NBGetData(Date date) {
 		
-		Integer rate = 0;
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-	    try {
+		Float rate = 0f;
+		try (CloseableHttpClient httpclient = HttpClientBuilder.create().build()){
 	    	DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 	    	
 	    	HttpHost target = new HttpHost("www.nbrb.by", 80, "http");
@@ -40,9 +39,7 @@ public class NazBankConnect {
 	 
 	    } catch (Exception e) {
 	    	e.printStackTrace();
-	    } finally {
-	    	httpclient.getConnectionManager().shutdown();
-	    }
+	    } 
 		return rate;
 	}
 }

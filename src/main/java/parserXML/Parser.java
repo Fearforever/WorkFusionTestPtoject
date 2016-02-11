@@ -16,11 +16,11 @@ import org.xml.sax.SAXException;
 
 public class Parser {
 	
-	public Integer parseNB(String str){
+	public Float parseNB(String str){
 	
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
-		Integer usdbyrRate = 0;
+		Float usdbyrRate = 0f;
 		
 		try {
 			
@@ -47,7 +47,7 @@ public class Parser {
 							
 							Node rateNode = usdNode.getFirstChild();
 							String strRate = rateNode.getNodeValue();
-							usdbyrRate = new Integer(strRate);
+							usdbyrRate = new Float(strRate);
 						}
 					}
 				}		

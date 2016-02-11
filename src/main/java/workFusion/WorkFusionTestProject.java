@@ -2,8 +2,6 @@ package workFusion;
 
 import java.util.Calendar;
 import java.util.Timer;
-import java.util.concurrent.TimeUnit;
-
 import scheduler.Scheduler;
 
 public class WorkFusionTestProject {
@@ -14,13 +12,13 @@ public class WorkFusionTestProject {
         Scheduler st = new Scheduler();
 		
 		Calendar today = Calendar.getInstance();
-		today.set(Calendar.HOUR_OF_DAY, 13);
+		today.set(Calendar.HOUR_OF_DAY, 9);
 		today.set(Calendar.MINUTE, 0);
 		today.set(Calendar.SECOND, 0);
 
-        time.schedule(st, today.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)); 
-//        time.schedule(st, 0, 10000); 
-
+//        time.schedule(st, today.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)); 
+        time.schedule(st, 0, 10000);
+        
 	}
 
 }
