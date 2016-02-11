@@ -72,7 +72,6 @@ public class Parser {
 			Document doc = db.parse(new InputSource(new ByteArrayInputStream(str.getBytes("utf-8"))));
 			NodeList midpointList = doc.getElementsByTagName("midpoint");
 			for (int i = 0; i < midpointList.getLength(); i++){
-				
 				Node midpoint = midpointList.item(i);
 				Node midpointValue =  midpoint.getFirstChild();
 				String rate = midpointValue.getNodeValue();

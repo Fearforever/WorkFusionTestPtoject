@@ -18,22 +18,21 @@ public class NazBankConnect {
 	
 	public Float NBGetData(Date date) {
 		
+		Parser parser = new Parser();
 		Float rate = 0f;
+    	DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    	HttpHost target = new HttpHost("www.nbrb.by", 80, "http");
+    	String requestString = "/Services/XmlExRates.aspx?ondate=" 
+    			+ dateFormat.format(date);
+      
+    	HttpGet getRequest = new HttpGet(requestString);
+
 		try (CloseableHttpClient httpclient = HttpClientBuilder.create().build()){
-	    	DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	    	
-	    	HttpHost target = new HttpHost("www.nbrb.by", 80, "http");
-	    	String requestString = "/Services/XmlExRates.aspx?ondate=" 
-	    			+ dateFormat.format(date);
-	      
-	    	HttpGet getRequest = new HttpGet(requestString);
-	 	 
+	    		 	 
 	    	HttpResponse httpResponse = httpclient.execute(target, getRequest);
 	    	HttpEntity entity = httpResponse.getEntity();
 	 
-	    	if (entity != null) {
-	    		
-	    		Parser parser = new Parser();
+	    	if (entity != null) {	    		
 	    		rate = parser.parseNB(EntityUtils.toString(entity).substring(3));
 	    	}
 	 
